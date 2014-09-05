@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Welcome to JSF_Spring_Hibernate Project</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputText value="Unregistered Users : "></h:outputText>
+		<h:dataTable id="usrs" var="usr" value="#{mailBean.userListUnreg}"
+			style="width: 10%">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{usr.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Login" />
+				</f:facet>
+				<h:outputText value="#{usr.login}" />
+			</h:column>
+		</h:dataTable>
+		<td><h:commandButton action="index" value="Home" ajax="false" /></td>
+	</h:form>
+</h:body>
+
+</html>
