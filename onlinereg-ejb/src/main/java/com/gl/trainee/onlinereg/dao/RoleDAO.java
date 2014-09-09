@@ -14,10 +14,10 @@ public class RoleDAO implements IRoleDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	public List<Role> getRoles() {
-		@SuppressWarnings("unchecked")
-		List<Role> list = em
-				.createQuery("select r from Role r").getResultList();
+		List<Role> list = em.createQuery("select r from Role r")
+				.getResultList();
 		return list;
 	}
 
@@ -32,8 +32,7 @@ public class RoleDAO implements IRoleDAO {
 	}
 
 	public Role getRole(int id) {
-		Role role = (Role) em.getReference(
-				Role.class, id);
+		Role role = (Role) em.getReference(Role.class, id);
 		return role;
 	}
 

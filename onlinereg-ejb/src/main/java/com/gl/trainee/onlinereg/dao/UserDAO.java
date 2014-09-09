@@ -34,13 +34,13 @@ public class UserDAO implements IUserDAO {
 
 	public User getUserById(int id) {
 		List<User> list = em
-				.createQuery("select u from User u where id=?", User.class)
-				.setParameter(0, id).getResultList();
+				.createQuery("select u from User u where u.id=?1", User.class)
+				.setParameter(1, id).getResultList();
 		return list.get(0);
 	}
 
 	public List<User> getUsers() {
-		List list = em.createQuery("select u from User u", User.class)
+		List<User> list = em.createQuery("select u from User u", User.class)
 				.getResultList();
 		return list;
 
@@ -95,15 +95,16 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public List<Role> getRoles() {
-		List list = em.createQuery("select r from Role r").getResultList();
+		List<Role> list = em.createQuery("select r from Role r", Role.class)
+				.getResultList();
 		return list;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getUnregistredUser() {
 		List<User> list = em.createQuery(
-				"select u from User u where u.role is null").getResultList();
+				"select u from User u where u.role is null", User.class)
+				.getResultList();
 		return list;
 	}
 

@@ -15,8 +15,7 @@ public class ChatDAO implements IChatDAO {
 	private EntityManager em;
 
 	public Chat getChat(int id) {
-		Chat chat = (Chat) em.getReference(
-				Chat.class, id);
+		Chat chat = (Chat) em.getReference(Chat.class, id);
 		return chat;
 	}
 
@@ -30,10 +29,11 @@ public class ChatDAO implements IChatDAO {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Chat> getChats() {
-		List list = em
-				.createQuery("from Chat").getResultList();
+		List<Chat> list = em.createQuery("select c from Chat c")
+				.getResultList();
 		return list;
 	}
 

@@ -2,10 +2,19 @@ package com.gl.trainee.onlinereg.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.Queue;
+import javax.jms.Session;
+import javax.jms.TextMessage;
 
 import com.gl.trainee.onlinereg.dao.IUserDAO;
 import com.gl.trainee.onlinereg.model.Role;
@@ -15,8 +24,16 @@ import com.gl.trainee.onlinereg.model.User;
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class UserService implements IUserService {
 
+	@Resource(mappedName = "onlinereg/jms/connection-factory")
+	private ConnectionFactory connectionFactory;
+
+	@Resource(mappedName = "onlinereg/jms/email")
+	private Queue queue;
+
 	@EJB
 	private IUserDAO userDAO;
+
+	private Connection connection;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void addUser(User user) {
@@ -86,6 +103,46 @@ public class UserService implements IUserService {
 		return getUserDAO().getUnregistredUser();
 	}
 
+	@Override
+	public void sendEmail(int usedId) {
+		getUserDAO().getUserById(usedId);
+		
+		String text = getUserDAO().getUserById(usedId).getEmail();
 
+		connection = null;
+		Session session = null;
 
+		try {
+
+			connection = connectionFactory.createConnection();
+			connection.start();
+
+			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+			MessageProducer mproducer = session.createProducer(queue);
+			mproducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+
+			TextMessage message = session.createTextMessage(text);
+
+			mproducer.send(message);
+
+		} catch (JMSException e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (session != null) {
+				try {
+					session.close();
+				} catch (JMSException e) {
+					throw new IllegalStateException(e);
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (JMSException e) {
+					throw new IllegalStateException(e);
+				}
+			}
+		}
+	}
 }

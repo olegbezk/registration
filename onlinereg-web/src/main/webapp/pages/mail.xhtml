@@ -7,13 +7,14 @@
 <h:body>
 	<h:form>
 		<h:outputText value="Send Email For Unregistered Users : "></h:outputText>
-		<h:selectManyCheckbox value="#{mailBean.unregUsers}">
-			<f:selectItems value="#{mailBean.userListUnreg}" var="user"
-				itemValue="#{user.id}" itemLabel="#{user.login}"  />
+		<h:selectManyCheckbox value="#{mailBean.unregisteredUsersChecked}">
+			<f:selectItems value="#{mailBean.unregisteredUsers}" var="user"
+				itemValue="#{user.id}" itemLabel="#{user.login}" />
 		</h:selectManyCheckbox>
-		<td><h:commandButton action="index" value="Home" ajax="false" />
-		<h:commandButton action="#{mailBean.sendEmail()}" value="Send" />
-		</td>
+		<td><h:commandButton action="#{mailBean.sendEmail()}"
+				value="Send" /> <h:commandButton action="success"
+				value="Admin Page" ajax="false" /> <h:commandButton action="index"
+				value="Home" ajax="false" /></td>
 	</h:form>
 </h:body>
 
