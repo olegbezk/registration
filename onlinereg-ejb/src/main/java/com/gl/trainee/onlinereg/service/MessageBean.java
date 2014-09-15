@@ -29,7 +29,7 @@ public class MessageBean implements MessageListener {
 	
 
 		} catch (Exception e) {
-			//throw new IllegalStateException(e);
+			
 		}
 
 	}
