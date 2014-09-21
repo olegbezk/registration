@@ -5,20 +5,20 @@
 
 <web-app>
 
-  <!-- Servlets -->
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>org.onlinereg.webgwt.server.GreetingServiceImpl</servlet-class>
-  </servlet>
+	<!-- Servlets -->
 
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/GUIModule/greet</url-pattern>
-  </servlet-mapping>
+	<servlet>
+		<servlet-name>jUnitHostImpl</servlet-name>
+		<servlet-class>com.google.gwt.junit.server.JUnitHostImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jUnitHostImpl</servlet-name>
+		<url-pattern>/org.onlinereg.webgwt.GUIModuleJUnit/junithost/*</url-pattern>
+	</servlet-mapping>
 
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>GUIModule.html</welcome-file>
-  </welcome-file-list>
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>GUIModule.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>
