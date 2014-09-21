@@ -1,2 +1,6 @@
 /target/
 /onlinereg-webgwt/
+/.classpath
+/.project
+/.settings/
+/.gwt/
