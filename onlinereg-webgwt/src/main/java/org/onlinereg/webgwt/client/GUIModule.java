@@ -1,7 +1,11 @@
 package org.onlinereg.webgwt.client;
 
+import org.onlinereg.webgwt.client.admin.AdminView;
+import org.onlinereg.webgwt.client.login.LoginView;
+import org.onlinereg.webgwt.client.simple.SimpleView;
+
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -9,24 +13,88 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class GUIModule implements EntryPoint {
 
+	/* Main Elements of the Website which represent the divs in the HTML-Page */
+	private FlowPanel header = new FlowPanel();
+	private FlowPanel content = new FlowPanel();
+	private FlowPanel footer = new FlowPanel();
+
+	/* Element of the Loginview */
+	private LoginView loginView = new LoginView();
+
+	/* Element of the database view */
+	private AdminView adminView = new AdminView();
+
+	/* Element of the main view */
+	private SimpleView simpleView = new SimpleView();
+
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
 
-		loadLogin();
-
 	}
 
-	// login widget
-	private void loadLogin() {
-		RootPanel rootPanel = RootPanel.get();
+	public void setContent(int status) {
+		switch (status) {
+		case 0:
+			System.out.println("User is not logged in");
+			header.clear();
+			header.add(loginView.getLoginheader().gethPanel());
 
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		rootPanel.add(horizontalPanel, 10, 10);
-		horizontalPanel.setSize("470px", "212px");
+			content.clear();
+			content.add(loginView.getMainPanel());
 
-		Login login = new Login();
-		horizontalPanel.add(login);
+			footer.clear();
+			footer.add(loginView.getLoginfooter().getHpanel());
+
+			/* Associate the panels with the HTML host page. */
+			RootPanel.get("content").add(content);
+
+			RootPanel.get("header").add(header);
+
+			RootPanel.get("footer").add(footer);
+
+			break;
+		case 1:
+			System.out
+					.println("User is logged in but has not chosen a database");
+
+			header.clear();
+			header.add(adminView.getAdminHeader().getHeaderPanel());
+
+			content.clear();
+			content.add(adminView.gethPanel());
+
+			footer.clear();
+			footer.add(adminView.getAdminFooter().getHpanel());
+
+			/* Associate the panels with the HTML host page. */
+			RootPanel.get("content").add(content);
+
+			RootPanel.get("header").add(header);
+
+			RootPanel.get("footer").add(footer);
+
+			break;
+		case 2:
+			System.out.println("User is logged in and has chosen a database");
+			header.clear();
+			header.add(simpleView.getSimpleheader().gethPanel());
+
+			content.clear();
+			content.add(simpleView.getSimplePanel());
+
+			footer.clear();
+
+			/* Associate the panels with the HTML host page. */
+			RootPanel.get("content").add(content);
+
+			RootPanel.get("header").add(header);
+
+			break;
+		default:
+			System.out.println("switch-case-defaulttext");
+		}
 	}
+
 }
