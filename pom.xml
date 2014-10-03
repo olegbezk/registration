@@ -11,6 +11,6 @@
 		<module>onlinereg-ear</module>
 		<module>onlinereg-ejb</module>
 		<module>onlinereg-web</module>
-		
+		<module>onlinereg-webgwt</module>
 	</modules>
 </project>

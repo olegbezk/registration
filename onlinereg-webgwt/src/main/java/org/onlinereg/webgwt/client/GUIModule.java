@@ -5,6 +5,8 @@ import org.onlinereg.webgwt.client.login.LoginView;
 import org.onlinereg.webgwt.client.simple.SimpleView;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -18,10 +20,10 @@ public class GUIModule implements EntryPoint {
 	private FlowPanel content = new FlowPanel();
 	private FlowPanel footer = new FlowPanel();
 
-	/* Element of the Loginview */
+	/* Element of the Login view */
 	private LoginView loginView = new LoginView();
 
-	/* Element of the database view */
+	/* Element of the admin view */
 	private AdminView adminView = new AdminView();
 
 	/* Element of the main view */
@@ -31,6 +33,47 @@ public class GUIModule implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		
+		/* Adding an Eventhandler to the Login-Button */
+		this.loginView.getLoginbutton().addClickHandler(new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+
+	        	  setContent(1);
+	            }
+	          });
+		/* Adding an Eventhandler to the Register-Button */
+		this.loginView.getRegisterbutton().addClickHandler(new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+
+	        	  setContent(1);
+	            }
+	          });
+		
+		/* Adding an Eventhandler to the Send Email Button*/
+		this.adminView.getSendEmailButton().addClickHandler(new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+
+	        	  setContent(2);
+	            }
+	          });
+		
+//		/*Adds an event handler on the closedatabase button to close the database*/
+//		this.simpleView.getSimpleheader().get.addClickHandler(new ClickHandler() {
+//	          public void onClick(ClickEvent event) {
+//	     
+//	        	  setContent(1);               
+//	          }
+//		 });
+	    
+		/*Adds an event handler on the logout button of the Simple to log out of the application*/	    
+	    this.simpleView.getSimpleheader().getLogoutButton().addClickHandler(new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	        	  
+	        	  setContent(0);        	  
+	          }
+		 });
+		
+		this.setContent(0);
 
 	}
 
@@ -56,9 +99,7 @@ public class GUIModule implements EntryPoint {
 
 			break;
 		case 1:
-			System.out
-					.println("User is logged in but has not chosen a database");
-
+			
 			header.clear();
 			header.add(adminView.getAdminHeader().getHeaderPanel());
 
@@ -77,7 +118,7 @@ public class GUIModule implements EntryPoint {
 
 			break;
 		case 2:
-			System.out.println("User is logged in and has chosen a database");
+			
 			header.clear();
 			header.add(simpleView.getSimpleheader().gethPanel());
 

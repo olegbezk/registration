@@ -18,7 +18,7 @@ public class SimpleView extends Composite {
 	private VerticalPanel simplePanel = new VerticalPanel();
 	private HTML defaultText = new HTML(
 			"<h2>Simple User View of the application</h2><p/>");
-	private Image defaultImage = new Image("resources/images/GoogleCode.png");
+	private Image defaultImage = new Image("images/GoogleCode.png");
 
 	private Header header = new Header();
 

@@ -17,14 +17,14 @@ public class AdminHeader extends Composite {
 	private FlowPanel headerPanel = new FlowPanel();
 
 	/** The logo image */
-	private Image logo = new Image("resources/images/GoogleCode.png");
+	private Image logo = new Image("images/GoogleCode.png");
 
 	/** The headline below the logo */
-	private HTML secondHeadline = new HTML("<h3>User List</h3>");
+	private HTML secondHeadline = new HTML("<h3>User List:</h3>");
 
 	public AdminHeader() {
 
-		logo.setWidth("300px");
+		logo.setWidth("150px");
 		headerPanel.add(logo);
 		headerPanel.add(secondHeadline);
 	}

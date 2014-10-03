@@ -27,7 +27,7 @@ public class Header extends Composite {
 
 	/** The logout button */
 	private Button logoutButton = new Button(
-			"<img src='resources/images/logout.gif' height='30px' width='30px'/>");
+			"<img src='images/logout.gif' height='30px' width='30px'/>");
 
 	public Header() {
 

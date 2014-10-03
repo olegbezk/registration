@@ -35,6 +35,7 @@ public class AdminView extends Composite {
 	private HorizontalPanel buttonBox = new HorizontalPanel();
 	private Button deletUserButton = new Button("Delete");
 	private Button sendEmailButton = new Button("Send Email");
+	
 
 	public AdminView() {
 

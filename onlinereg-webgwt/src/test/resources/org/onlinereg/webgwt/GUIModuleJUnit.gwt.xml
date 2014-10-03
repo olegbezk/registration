@@ -4,6 +4,6 @@
   <inherits name='org.onlinereg.webgwt.GUIModule' />
 
   <!-- Specify the path to any remote services.                   -->
-  
+  <servlet path="/GUIModule/greet" class="org.onlinereg.webgwt.server.GreetingServiceImpl" />
 
 </module>

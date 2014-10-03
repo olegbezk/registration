@@ -4,7 +4,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
 /**
- * This class represents the footer of the database view.
+ * This class represents the footer of the admin view.
  * 
  * @author Oleg Bezkorovajniy
  */

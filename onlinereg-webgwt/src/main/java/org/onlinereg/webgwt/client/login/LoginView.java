@@ -34,7 +34,7 @@ public class LoginView extends Composite {
 	private LoginFooter loginfooter = new LoginFooter();
 
 	/** The logo image */
-	private Image logo = new Image("resources/images/GoogleCode.png");
+	private Image logo = new Image("images/GoogleCode.png");
 
 	/** The headline below the logo */
 	private HTML secondHeadline = new HTML("<h1>Example GWT Application</h1>");
@@ -46,16 +46,15 @@ public class LoginView extends Composite {
 	private FlexTable loginLayout = new FlexTable();
 
 	// elements in login grid
-	private String headline = "Log into the application";
+	private String headline = "Log into the application:";
 	private String usernameLabel = "Username: ";
 	private String passwordLabel = "Password: ";
 	// private String ipLabel = "Server-URL: ";
 	// private String portLabel = "Port: ";
 	private TextBox username = new TextBox();
 	private PasswordTextBox password = new PasswordTextBox();
-	// private TextBox ipadresse = new TextBox();
-	// private TextBox port = new TextBox();
 	private Button loginbutton = new Button("Login");
+	private Button registerbutton = new Button("Register");
 
 	public LoginView() {
 
@@ -84,28 +83,15 @@ public class LoginView extends Composite {
 		cellFormatter.setColSpan(3, 0, 2);
 		cellFormatter.setHorizontalAlignment(3, 0,
 				HasHorizontalAlignment.ALIGN_CENTER);
-
-		// // Create some advanced options
-		// Grid advancedOptions = new Grid(2, 2);
-		// advancedOptions.setCellSpacing(6);
-		// advancedOptions.setHTML(0, 0, ipLabel);
-		// advancedOptions.setWidget(0, 1, ipadresse);
-		// advancedOptions.setHTML(1, 0, portLabel);
-		// advancedOptions.setWidget(1, 1, port);
-
-		// // Add advanced options to form in a disclosure panel
-		// DisclosurePanel advancedDisclosure = new DisclosurePanel(
-		// "Advanced Settings");
-		// advancedDisclosure.setAnimationEnabled(true);
-		// advancedDisclosure.ensureDebugId("DisclosurePanel");
-		// advancedDisclosure.setContent(advancedOptions);
-
-		// loginLayout.setWidget(4, 0, advancedDisclosure);
-		// cellFormatter.setColSpan(4, 0, 2);
+		
+		//Add the registerbutton to the form
+		loginLayout.setWidget(3, 1, registerbutton);
+		cellFormatter.setColSpan(3, 1, 2);
+		cellFormatter.setHorizontalAlignment(3, 1,
+				HasHorizontalAlignment.ALIGN_CENTER);
 
 		// Wrap the content in a DecoratorPanel
 		decPanel.setWidget(loginLayout);
-
 		mainpanel.setWidth(windowWidth / 2 + "px");
 		mainpanel.setHeight(windowHeight * 0.6 + "px");
 		mainpanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -141,24 +127,16 @@ public class LoginView extends Composite {
 	public Button getLoginbutton() {
 		return loginbutton;
 	}
+	
+	/**
+	 * Returns the register button
+	 * 
+	 * @return The register button
+	 * */
+	public Button getRegisterbutton() {
+		return registerbutton;
+	}
 
-	// /**
-	// * Returns the textbox for the URL
-	// *
-	// * @return The textbox for the URL
-	// * */
-	// public TextBox getIpadresse() {
-	// return ipadresse;
-	// }
-
-	// /**
-	// * Returns the textbox for the port
-	// *
-	// * @return The textbox for the port
-	// * */
-	// public TextBox getPort() {
-	// return port;
-	// }
 
 	/**
 	 * Returns the header of the login view
