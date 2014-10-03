@@ -49,8 +49,6 @@ public class LoginView extends Composite {
 	private String headline = "Log into the application:";
 	private String usernameLabel = "Username: ";
 	private String passwordLabel = "Password: ";
-	// private String ipLabel = "Server-URL: ";
-	// private String portLabel = "Port: ";
 	private TextBox username = new TextBox();
 	private PasswordTextBox password = new PasswordTextBox();
 	private Button loginbutton = new Button("Login");
